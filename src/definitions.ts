@@ -1,9 +1,3 @@
-declare module "@capacitor/core" {
-  interface PluginRegistry {
-    BluetoothSerial: BluetoothSerialPlugin;
-  }
-}
-
 export interface BluetoothSerialPlugin {
 
   isEnabled(): Promise<BluetoothEnabledResult>;
@@ -23,6 +17,8 @@ export interface BluetoothSerialPlugin {
   read(options: BluetoothReadOptions): Promise<BluetoothDataResult>;
 
   readUntil(options: BluetoothReadUntilOptions): Promise<BluetoothDataResult>;
+
+  write(options: BluetoothWriteOptions): Promise<void>;
 
   enableNotifications(options: BluetoothEnableNotificationsOptions): Promise<BluetoothEnableNotificationsResult>;
 
@@ -70,6 +66,11 @@ export interface BluetoothReadOptions {
 export interface BluetoothReadUntilOptions {
   address: string;
   delimiter: string;
+}
+
+export interface BluetoothWriteOptions {
+    address: string;
+    value: string;
 }
 
 export interface BluetoothEnableNotificationsOptions {
